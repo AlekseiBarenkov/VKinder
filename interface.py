@@ -35,6 +35,20 @@ class BotInterface:
             self.worksheets = self.vk_tools.search_worksheet(self.params, self.offset)
             self.offset += 50
 
+    def _get_required_data(self, user_id, key):
+        messages = {
+            'name': 'Необходимо указать свои имя и фамилию',
+            'sex': 'Необходимо указать свой пол в формате: 1 - женщина, 2 - мужчина',
+            'city': 'Необходимо указать город поиска',
+            'age': 'Необходимо указать свой возраст(сколько полных лет)'
+        }
+
+        self.message_send(user_id, messages[key])
+        for event in self.longpoll.listen():
+            if event.type == VkEventType.MESSAGE_NEW and event.to_me:
+                self.params[key] = event.text
+                return
+
     def message_send(self, user_id, message, attachment=None):
         self.vk.method('messages.send',
                        {
@@ -53,7 +67,11 @@ class BotInterface:
                     self.message_send(event.user_id, f'Привет дружище, {self.params["name"]}!')
 
                 elif event.text.lower() == 'поиск':
-                    self.message_send(event.user_id, 'Уже ищу...')
+                    for item in self.params:
+                        if self.params[item] is None:
+                            self._get_required_data(event.user_id, item)
+
+                    self.message_send(event.user_id, 'Пошел искать...')
                     self._check_worksheets_len()
 
                     found_profile = self._get_profile_data()
