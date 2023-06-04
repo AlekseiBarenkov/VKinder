@@ -54,6 +54,7 @@ class VkTools:
                                           'has_photo': True,
                                           'age_from': profile['year'] - 3,
                                           'age_to': profile['year'] + 3,
+                                          'status': 6
                                        }
                                       )
         except ApiError as error:
