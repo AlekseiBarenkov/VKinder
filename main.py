@@ -52,8 +52,8 @@ class VkTools:
                                           'hometown': profile['city'],
                                           'sex': 1 if int(profile['sex']) == 2 else 2,
                                           'has_photo': True,
-                                          'age_from': profile['year'] - 3,
-                                          'age_to': profile['year'] + 3,
+                                          'age_from': int(profile['year']) - 3,
+                                          'age_to': int(profile['year']) + 3,
                                           'status': 6
                                        }
                                       )
