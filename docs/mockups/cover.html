@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>VKinder — обложка</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1440px;height:760px;overflow:hidden}
+  body{
+    background:#0b0d13;color:#eef0f5;
+    font-family:"Segoe UI","Inter",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;position:relative;
+  }
+  .glow{position:absolute;border-radius:50%;filter:blur(10px);pointer-events:none}
+  .g1{width:760px;height:760px;left:-240px;top:-280px;
+      background:radial-gradient(circle,rgba(77,125,255,.28),transparent 62%)}
+  .g2{width:820px;height:820px;right:-260px;bottom:-380px;
+      background:radial-gradient(circle,rgba(255,95,158,.22),transparent 62%)}
+  .g3{width:520px;height:520px;right:180px;top:-220px;
+      background:radial-gradient(circle,rgba(120,90,255,.18),transparent 65%)}
+  .grid{
+    position:absolute;inset:0;opacity:.35;
+    background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    background-size:64px 64px;
+    mask-image:radial-gradient(80% 70% at 30% 30%,#000 20%,transparent 80%);
+  }
+
+  .wrap{
+    position:relative;z-index:2;height:100%;padding:64px 76px;
+    display:grid;grid-template-columns:1fr 470px;gap:40px;align-items:center;
+  }
+
+  .logo-row{display:flex;align-items:center;gap:14px;margin-bottom:34px}
+  .logo{
+    width:54px;height:54px;border-radius:17px;display:grid;place-items:center;
+    background:linear-gradient(135deg,#4d7dff,#ff5f9e);
+    box-shadow:0 14px 34px rgba(77,125,255,.38);
+  }
+  .logo svg{width:28px;height:28px;fill:#fff}
+  .logo-word{font-size:21px;font-weight:600;letter-spacing:.3px;color:#dfe4f2}
+
+  .eyebrow{
+    font-size:12px;letter-spacing:3.4px;font-weight:600;color:#7d88a3;
+    text-transform:uppercase;margin-bottom:16px;
+  }
+  h1{
+    font-size:104px;line-height:.94;font-weight:700;letter-spacing:-3.5px;
+    background:linear-gradient(120deg,#ffffff 35%,#b9c8ff 75%,#f3b6d6);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{
+    margin-top:26px;font-size:23px;line-height:1.45;color:#a9b0c4;max-width:620px;
+  }
+  .sub b{color:#e8ecf7;font-weight:600}
+
+  .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:34px}
+  .chip{
+    font-size:13px;color:#aeb7cc;background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.09);border-radius:999px;padding:8px 15px;
+  }
+
+  .note{margin-top:40px;font-size:13.5px;color:#6f7890;display:flex;align-items:center;gap:9px}
+  .note .bar{width:26px;height:2px;border-radius:2px;background:#4d7dff}
+
+  /* chat card */
+  .card-wrap{position:relative}
+  .card{
+    width:440px;border-radius:26px;background:#16171c;
+    border:1px solid #2b2d38;
+    box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.02) inset;
+    overflow:hidden;transform:rotate(-1.4deg);
+  }
+  .card-head{display:flex;align-items:center;gap:11px;padding:15px 17px;border-bottom:1px solid #24262f}
+  .ava{
+    width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+    background:linear-gradient(135deg,#4d7dff,#ff5f9e);flex:0 0 38px;
+  }
+  .ava svg{width:19px;height:19px;fill:#fff}
+  .ch-name{font-size:14.5px;font-weight:600}
+  .ch-sub{font-size:11.5px;color:#8b93a7;margin-top:2px;display:flex;align-items:center;gap:5px}
+  .dot{width:5px;height:5px;border-radius:50%;background:#3ecf6a}
+  .card-body{padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px}
+  .m{max-width:330px;border-radius:13px;padding:8px 12px;font-size:13.5px;line-height:1.4}
+  .m.bot{background:#25262c;border-bottom-left-radius:5px;color:#e6e8ee}
+  .m.me{align-self:flex-end;background:#3b6ce2;border-bottom-right-radius:5px;color:#fff}
+  .time{display:block;font-size:9.5px;opacity:.45;text-align:right;margin-top:2px}
+  .photos{display:grid;grid-template-columns:1.8fr 1fr;grid-template-rows:1fr 1fr;gap:2px;height:132px;margin-top:7px;border-radius:10px;overflow:hidden}
+  .ph{position:relative;overflow:hidden}
+  .ph-1{grid-row:1/3}
+  .ph svg{position:absolute;left:50%;bottom:-4%;transform:translateX(-50%);width:46%;fill:rgba(255,255,255,.22)}
+  .ph-2 svg{width:64%;left:58%}
+  .ph-3 svg{width:56%;left:44%}
+  .ph-1{background:radial-gradient(90% 80% at 25% 10%,rgba(255,255,255,.3),transparent 55%),radial-gradient(90% 90% at 78% 88%,rgba(255,95,158,.9),transparent 58%),linear-gradient(140deg,#4d7dff,#3a1f6e 70%,#25123f)}
+  .ph-2{background:radial-gradient(100% 90% at 20% 10%,rgba(255,255,255,.32),transparent 55%),radial-gradient(100% 100% at 82% 92%,rgba(255,86,140,.85),transparent 60%),linear-gradient(150deg,#6c4bd8,#2b1e63)}
+  .ph-3{background:radial-gradient(100% 90% at 18% 8%,rgba(255,255,255,.3),transparent 55%),radial-gradient(100% 100% at 80% 95%,rgba(255,180,90,.75),transparent 60%),linear-gradient(160deg,#2f8f9e,#123c4a)}
+
+  .foot{
+    position:absolute;left:76px;bottom:34px;z-index:2;
+    font-size:12px;color:#5e677d;letter-spacing:.2px;
+  }
+</style>
+</head>
+<body>
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="glow g3"></div>
+  <div class="grid"></div>
+
+  <div class="wrap">
+    <div>
+      <div class="logo-row">
+        <div class="logo">
+          <svg viewBox="0 0 24 24"><path d="M12 20.6l-1.1-1C6.1 15.4 3 12.6 3 9.2 3 6.5 5.1 4.5 7.7 4.5c1.6 0 3.1.8 4.3 2.1 1.2-1.3 2.7-2.1 4.3-2.1 2.6 0 4.7 2 4.7 4.7 0 3.4-3.1 6.2-7.9 10.4l-1.1 1z"/></svg>
+        </div>
+        <div class="logo-word">VKinder</div>
+      </div>
+
+      <div class="eyebrow">портфолио · python</div>
+      <h1>VKinder</h1>
+      <p class="sub">Чат-бот для VK: ищет анкеты по вашим параметрам и присылает по одной — с <b>тремя лучшими фото</b> и ссылкой на профиль.</p>
+
+      <div class="chips">
+        <span class="chip">Python</span>
+        <span class="chip">VK API</span>
+        <span class="chip">Long Poll</span>
+        <span class="chip">SQLAlchemy</span>
+        <span class="chip">SQLite</span>
+      </div>
+
+      <div class="note"><span class="bar"></span>Диалог, который не повторяет уже просмотренные анкеты</div>
+    </div>
+
+    <div class="card-wrap">
+      <div class="card">
+        <div class="card-head">
+          <div class="ava"><svg viewBox="0 0 24 24"><path d="M12 20.6l-1.1-1C6.1 15.4 3 12.6 3 9.2 3 6.5 5.1 4.5 7.7 4.5c1.6 0 3.1.8 4.3 2.1 1.2-1.3 2.7-2.1 4.3-2.1 2.6 0 4.7 2 4.7 4.7 0 3.4-3.1 6.2-7.9 10.4l-1.1 1z"/></svg></div>
+          <div>
+            <div class="ch-name">VKinder</div>
+            <div class="ch-sub"><span class="dot"></span> бот сообщества · онлайн</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="m bot">Привет дружище, Алексей!<span class="time">21:14</span></div>
+          <div class="m me">Поиск<span class="time">21:15</span></div>
+          <div class="m bot">Пошел искать...<span class="time">21:15</span></div>
+          <div class="m bot" style="padding:8px">
+            <div style="padding:1px 2px 0">Имя: Анна<br>Ссылка: <span style="color:#9dbcff">vk.com/id1234567</span></div>
+            <div class="photos">
+              <div class="ph ph-1"><svg viewBox="0 0 100 140"><g fill="#fff" opacity=".22"><circle cx="50" cy="34" r="19"/><rect x="42" y="44" width="16" height="52" rx="8"/><path d="M2 140c0-38 21-68 48-68s48 30 48 68z"/></g></svg></div>
+              <div class="ph ph-2"><svg viewBox="0 0 100 140"><g fill="#fff" opacity=".22"><circle cx="50" cy="34" r="19"/><rect x="42" y="44" width="16" height="52" rx="8"/><path d="M2 140c0-38 21-68 48-68s48 30 48 68z"/></g></svg></div>
+              <div class="ph ph-3"><svg viewBox="0 0 100 140"><g fill="#fff" opacity=".22"><circle cx="50" cy="34" r="19"/><rect x="42" y="44" width="16" height="52" rx="8"/><path d="M2 140c0-38 21-68 48-68s48 30 48 68z"/></g></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="foot">Python · vk_api · SQLAlchemy · SQLite · Long Poll API</div>
+</body>
+</html>

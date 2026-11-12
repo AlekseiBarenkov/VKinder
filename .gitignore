@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Локальная конфигурация с токенами
+config.py
+.env
+
+# Локальная база просмотренных анкет
+*.db
+viewed.db

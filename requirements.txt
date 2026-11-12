@@ -1,0 +1,6 @@
+# VK API wrapper: Long Poll, users.get, users.search, photos.get
+vk-api==11.10.1
+
+# ORM для SQLite. 2.0 работает на Python 3.9+, 2.1 требует Python 3.11+,
+# поэтому диапазон оставляет pip выбрать подходящую версию.
+SQLAlchemy>=2.0.36,<3.0
